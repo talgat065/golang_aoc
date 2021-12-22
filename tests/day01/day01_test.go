@@ -15,3 +15,13 @@ func TestSonarSweep(t *testing.T) {
 		t.Fatal()
 	}
 }
+
+func TestSonarSweep2(t *testing.T) {
+	increases := day01.SonarSweep2("../../input_files/day01/input.txt")
+
+	correctAnswer := 1065
+	if increases != correctAnswer {
+		fmt.Println(increases)
+		t.Fatal()
+	}
+}
