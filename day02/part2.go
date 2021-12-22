@@ -2,33 +2,27 @@ package day02
 
 import (
 	"bufio"
-	"log"
 	"os"
 	"strconv"
 	"strings"
 )
 
-type Position struct {
-	horizontal int
-	depth int
-	aim int
-}
-
-func (p *Position) move(direction string, steps int) {
+func (p *Position) move2(direction string, steps int) {
 	if direction == "forward" {
 		p.horizontal += steps
+		p.depth += p.aim * steps
 	}
 
 	if direction == "down" {
-		p.depth += steps
+		p.aim += steps
 	}
 
 	if direction == "up" {
-		p.depth -= steps
+		p.aim -= steps
 	}
 }
 
-func Dive(filepath string) int {
+func Dive2(filepath string) int {
 	f, err := os.Open(filepath)
 
 	checkErr(err)
@@ -50,23 +44,8 @@ func Dive(filepath string) int {
 
 		checkErr(err)
 
-		p.move(direction, steps)
+		p.move2(direction, steps)
 	}
 
 	return p.depth * p.horizontal
-}
-
-func checkErr(err error) {
-	if err != nil {
-		log.Fatal(err)
-	}
-}
-
-func closeFile() func(f *os.File) {
-	return func(f *os.File) {
-		err := f.Close()
-		if err != nil {
-			log.Fatal(err)
-		}
-	}
 }

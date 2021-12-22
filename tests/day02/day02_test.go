@@ -16,3 +16,14 @@ func TestDive(t *testing.T) {
 		t.Fatal()
 	}
 }
+
+func TestDive2(t *testing.T) {
+	result := day02.Dive2("../../input_files/day02/input.txt")
+
+	correctAnswer := 1765720035
+
+	if result != correctAnswer {
+		fmt.Println(result)
+		t.Fatal()
+	}
+}
